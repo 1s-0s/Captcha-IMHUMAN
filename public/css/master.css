@@ -1,0 +1,13 @@
+.container{
+    padding-top:10em !important;
+}
+.outer{
+    margin:auto !important;
+}
+.content{
+    text-align: center;
+}
+.description{
+    font-size: 2rem;
+    cursor: pointer;
+}

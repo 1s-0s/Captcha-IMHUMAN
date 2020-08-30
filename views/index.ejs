@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <!-- sematic ui -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" integrity="sha512-8bHTC73gkZ7rZ7vpqUQThUDhqcNFyYi2xgDgPDHc+GXVGHXq+xPjynxIopALmOPqzo9JZj0k6OqqewdGO3EsrQ==" crossorigin="anonymous" />
+    <!-- master.css -->
+    <link rel="stylesheet" href="css/master.css" />
+    
+    <title>Document</title>
+</head>
+<body id="test">
+    
+    <%const volOn="fas fa-volume-up"%>
+    <%const volOff="fas fa-volume-mute"%>
+    <div class="ui container">
+        <div class="ui card outer">
+            <div class="image">
+              <img src="/images/welcome_cats.svg">
+            </div>
+            <div class="content">
+              <h5 class="header">Listen audio to verify</h5>
+              <!-- <div class="meta">
+                <span class="date">Joined in 2013</span>
+              </div> -->
+              <div class="description">
+                <i id="volume" class="<%=volOff%>" onclick=changeIcon()></i>
+              </div>
+            </div>
+            <div class="extra content">
+              <a>
+                <!-- <i class="user icon"></i> -->
+                Press "F" || "J"
+              </a>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- change -->
+    <script  src="swipe-change.js"></script>
+    <script type="text/javascript" src="change.js"></script>
+    <script>setSoundBuffer();</script>
+    
+</body>
+</html>
