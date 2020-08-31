@@ -103,8 +103,6 @@ const keyCheck = (event) => {
     if (currIcon === "fas fa-volume-up") {
         if (key === 32 && isanimal === true) {
             document.getElementById("successBox").style.display = "flex";
-        } else {
-            document.getElementById("failureBox").style.display = "flex";
         }
     } else {
         document.getElementById("failureBox").style.display = "flex";
