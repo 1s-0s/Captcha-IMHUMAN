@@ -7,7 +7,9 @@ let playSound1;
 let playSound2;
 let mainIndex;
 let backIndex;
+let ans=false;
 let isanimal = false;
+let flag=false;
 let animals = new Set(["birds", "senpai", "samriddhi"]);
 let mainSounds = ["birds", "brook"];
 let backgroundSounds = ["pedestrian", "rain"];
@@ -62,36 +64,61 @@ function stopSound() {
 const changeIcon = () => {
 
     currIcon = document.getElementById("volume").getAttribute("class");
-    if (currIcon === "fas fa-volume-up") {
-        stopSound();
-        document.getElementById("volume").setAttribute("class", "fas fa-volume-mute");
-    } else {
+    // if (currIcon === "fas fa-volume-up") {
+    //     stopSound();
+    //     document.getElementById("volume").setAttribute("class", "fas fa-volume-mute");
+    // } else if(currIcon === "fas fa-volume-mute") {
+    if(currIcon === "fas fa-volume-mute" && !flag) {
         playSound1 = ctx.createBufferSource();
         playSound2 = ctx.createBufferSource();
         playback();
         document.getElementById("volume").setAttribute("class", "fas fa-volume-up");
+        flag=true;
     }
 }
 
 // ---------------------------------Verify-HUMAN----------------------------------------
 
-const click = () => {
-    if (currIcon === "fas fa-volume-up") {
+const leftSwipe = () => {
+    console.log(currIcon);
+    console.log("hello from :"+isanimal);
+    // WORKING INVERSELY
+    if (currIcon === "fas fa-volume-mute") {
+        
         if (!isanimal) {
+            console.log("in here");
+            ans=true;
             document.getElementById("successBox").style.display = "flex";
-        }
-    } else {
+            document.getElementById("failureBox").style.display = "none";
+        }else{
+            ans=false;
+            document.getElementById("failureBox").style.display = "flex";
+            document.getElementById("successBox").style.display = "none";
+        }  
+    }else{
+        // TEST PURPOSES
         document.getElementById("failureBox").style.display = "flex";
+        document.getElementById("successBox").style.display = "none";
     }
     console.log("left");
 }
-const verifyHuman = () => {
-    if (currIcon === "fas fa-volume-up") {
+const rightSwipe = () => {
+    console.log(currIcon);
+    // WORKING INVERSELY
+    if (currIcon === "fas fa-volume-mute") {
         if (isanimal) {
+            ans=true;
             document.getElementById("successBox").style.display = "flex";
+            document.getElementById("failureBox").style.display = "none";
+        }else {
+            ans=false;
+            document.getElementById("failureBox").style.display = "flex";
+            document.getElementById("successBox").style.display = "none";
         }
     } else {
+        // TEST PURPOSES
         document.getElementById("failureBox").style.display = "flex";
+        document.getElementById("successBox").style.display = "none";
     }
     console.log("right");
 }
@@ -103,15 +130,21 @@ const keyCheck = (event) => {
     if (currIcon === "fas fa-volume-up") {
         if (key === 32 && isanimal === true) {
             document.getElementById("successBox").style.display = "flex";
+            document.getElementById("failureBox").style.display = "none";
+        }else{
+            document.getElementById("failureBox").style.display = "flex";
+            document.getElementById("successBox").style.display = "none";
         }
     } else {
         document.getElementById("failureBox").style.display = "flex";
+        document.getElementById("successBox").style.display = "none";
     }
 
 }
 
-document.getElementById('test').addEventListener('swiped-left', click);
+document.getElementById('test').addEventListener('swiped-left', leftSwipe);
 
-document.getElementById('test').addEventListener('swiped-right', verifyHuman);
+document.getElementById('test').addEventListener('swiped-right', rightSwipe);
 
 document.getElementById('test').addEventListener('keypress', keyCheck);
+
