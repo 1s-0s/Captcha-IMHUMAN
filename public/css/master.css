@@ -1,13 +1,24 @@
-.container{
-    padding-top:10em !important;
+.container {
+    padding-top: 10em !important;
 }
-.outer{
-    margin:auto !important;
+
+.outer {
+    margin: auto !important;
 }
-.content{
+
+.content {
     text-align: center;
 }
-.description{
+
+.description {
     font-size: 2rem;
     cursor: pointer;
+}
+
+#successBox {
+    display: none;
+}
+
+#failureBox {
+    display: none;
 }
