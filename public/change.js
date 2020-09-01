@@ -133,6 +133,9 @@ const keyCheck = (event) => {
         if (key === 32 && isanimal === true) {
             document.getElementById("successBox").style.display = "flex";
             document.getElementById("failureBox").style.display = "none";
+        }else if(key!==32 && !isanimal){
+            document.getElementById("failureBox").style.display = "none";
+            document.getElementById("successBox").style.display = "flex";
         }else{
             document.getElementById("failureBox").style.display = "flex";
             document.getElementById("successBox").style.display = "none";
@@ -151,14 +154,14 @@ document.getElementById('test').addEventListener('swiped-right', rightSwipe);
 document.getElementById('test').addEventListener('keypress', keyCheck);
 
 // ---------------------------------Sending POST req----------------------------------------
-let maalpani={ans:"mazeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"}
+
 
 const sendData=()=>{
-    console.log(maalpani.ans);
+    // console.log(maalpani.ans);
     fetch("/", {
         method: "POST", 
         headers: {'Content-Type':'application/x-www-form-urlencoded'},
-        body: 'ans=true'
+        body: `result=${ans}`
     }).then(res => {
         console.log("Request complete! response:", res);
     });
