@@ -101,6 +101,7 @@ const leftSwipe = () => {
         document.getElementById("successBox").style.display = "none";
     }
     console.log("left");
+    sendData();
 }
 const rightSwipe = () => {
     console.log(currIcon);
@@ -121,6 +122,7 @@ const rightSwipe = () => {
         document.getElementById("successBox").style.display = "none";
     }
     console.log("right");
+    sendData();
 }
 
 const keyCheck = (event) => {
@@ -139,7 +141,7 @@ const keyCheck = (event) => {
         document.getElementById("failureBox").style.display = "flex";
         document.getElementById("successBox").style.display = "none";
     }
-
+    sendData();
 }
 
 document.getElementById('test').addEventListener('swiped-left', leftSwipe);
@@ -148,3 +150,17 @@ document.getElementById('test').addEventListener('swiped-right', rightSwipe);
 
 document.getElementById('test').addEventListener('keypress', keyCheck);
 
+// ---------------------------------Sending POST req----------------------------------------
+let maalpani={ans:"mazeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"}
+
+const sendData=()=>{
+    console.log(maalpani.ans);
+    fetch("/", {
+        method: "POST", 
+        headers: {'Content-Type':'application/x-www-form-urlencoded'},
+        body: 'ans=true'
+    }).then(res => {
+        console.log("Request complete! response:", res);
+    });
+    
+}
