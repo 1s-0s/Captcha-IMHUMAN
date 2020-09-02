@@ -7,9 +7,9 @@ let playSound1;
 let playSound2;
 let mainIndex;
 let backIndex;
-let ans=false;
+let ans = false;
 let isanimal = false;
-let flag=false;
+let flag = false;
 let animals = new Set(["birds", "senpai", "samriddhi"]);
 let mainSounds = ["birds", "brook"];
 let backgroundSounds = ["pedestrian", "rain"];
@@ -68,12 +68,12 @@ const changeIcon = () => {
     //     stopSound();
     //     document.getElementById("volume").setAttribute("class", "fas fa-volume-mute");
     // } else if(currIcon === "fas fa-volume-mute") {
-    if(currIcon === "fas fa-volume-mute" && !flag) {
+    if (currIcon === "fas fa-volume-mute" && !flag) {
         playSound1 = ctx.createBufferSource();
         playSound2 = ctx.createBufferSource();
         playback();
         document.getElementById("volume").setAttribute("class", "fas fa-volume-up");
-        flag=true;
+        flag = true;
     }
 }
 
@@ -81,21 +81,21 @@ const changeIcon = () => {
 
 const leftSwipe = () => {
     console.log(currIcon);
-    console.log("hello from :"+isanimal);
+    console.log("hello from :" + isanimal);
     // WORKING INVERSELY
     if (currIcon === "fas fa-volume-mute") {
-        
+
         if (!isanimal) {
             console.log("in here");
-            ans=true;
+            ans = true;
             document.getElementById("successBox").style.display = "flex";
             document.getElementById("failureBox").style.display = "none";
-        }else{
-            ans=false;
+        } else {
+            ans = false;
             document.getElementById("failureBox").style.display = "flex";
             document.getElementById("successBox").style.display = "none";
-        }  
-    }else{
+        }
+    } else {
         // TEST PURPOSES
         document.getElementById("failureBox").style.display = "flex";
         document.getElementById("successBox").style.display = "none";
@@ -108,11 +108,11 @@ const rightSwipe = () => {
     // WORKING INVERSELY
     if (currIcon === "fas fa-volume-mute") {
         if (isanimal) {
-            ans=true;
+            ans = true;
             document.getElementById("successBox").style.display = "flex";
             document.getElementById("failureBox").style.display = "none";
-        }else {
-            ans=false;
+        } else {
+            ans = false;
             document.getElementById("failureBox").style.display = "flex";
             document.getElementById("successBox").style.display = "none";
         }
@@ -131,12 +131,15 @@ const keyCheck = (event) => {
     currIcon = document.getElementById("volume").getAttribute("class");
     if (currIcon === "fas fa-volume-up") {
         if (key === 32 && isanimal === true) {
+            ans = true;
             document.getElementById("successBox").style.display = "flex";
             document.getElementById("failureBox").style.display = "none";
-        }else if(key!==32 && !isanimal){
+        } else if (key !== 32 && !isanimal) {
+            ans = true;
             document.getElementById("failureBox").style.display = "none";
             document.getElementById("successBox").style.display = "flex";
-        }else{
+        } else {
+            ans = false;
             document.getElementById("failureBox").style.display = "flex";
             document.getElementById("successBox").style.display = "none";
         }
@@ -155,15 +158,27 @@ document.getElementById('test').addEventListener('keypress', keyCheck);
 
 // ---------------------------------Sending POST req----------------------------------------
 
+// let myWindow = window.open("/", "_self");
 
-const sendData=()=>{
-    // console.log(maalpani.ans);
-    fetch("/", {
-        method: "POST", 
-        headers: {'Content-Type':'application/x-www-form-urlencoded'},
+const timeout = (time, promise) => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            // alert("Done!")
+            console.log("timeout!")
+                // myWindow.close()
+        }, time)
+        promise.then(resolve, reject)
+    });
+};
+
+
+const sendData = () => {
+    console.log("HELOOOOOOOOO");
+    timeout(1000, fetch("/", {
+        method: "POST",
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: `result=${ans}`
     }).then(res => {
         console.log("Request complete! response:", res);
-    });
-    
+    }))
 }
