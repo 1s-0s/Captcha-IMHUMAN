@@ -57,18 +57,22 @@ function stopSound() {
     playSound1.stop();
     playSound2.stop();
 }
-
-
+// ---------------------------------autoplaying audio----------------------------------------
+window.onload = function() {
+    document.getElementById("instruction").play();
+}
 // --------------------------------------------------------------------------------------
 
-const changeIcon = () => {
 
+const changeIcon = () => {
+    
     currIcon = document.getElementById("volume").getAttribute("class");
     // if (currIcon === "fas fa-volume-up") {
     //     stopSound();
     //     document.getElementById("volume").setAttribute("class", "fas fa-volume-mute");
     // } else if(currIcon === "fas fa-volume-mute") {
     if (currIcon === "fas fa-volume-mute" && !flag) {
+        document.getElementById("instruction").pause();
         playSound1 = ctx.createBufferSource();
         playSound2 = ctx.createBufferSource();
         playback();
